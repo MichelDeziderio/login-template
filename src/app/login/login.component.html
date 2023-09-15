@@ -1,0 +1,46 @@
+<section
+  [ngStyle]="{'background': 'url(assets/images/background.jpg) no-repeat center center','background-size':'cover'}">
+
+  <div class="forms" [formGroup]="loginForm">
+
+    <h2 class="login-title">LOGIN</h2>
+
+    <mat-form-field class="fields" appearance="outline">
+      <mat-label>Email</mat-label>
+      <input type="email" matInput formControlName="email" placeholder="Ex. pat@example.com" required>
+      <mat-error *ngIf="f.controls['email'].hasError('email') && !f.controls['email'].hasError('required')">
+        Please enter a valid email address
+      </mat-error>
+      <mat-error *ngIf="f.controls['email'].hasError('required')">
+        Email is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="fields" appearance="outline">
+      <mat-label>Password</mat-label>
+      <input type="password" matInput formControlName="password" placeholder="Password"
+        [type]="hidePassword ? 'password' : 'text'">
+
+      <div mat-icon-button matSuffix class="hide-password" (click)="hidePassword = !hidePassword"
+        [title]="hidePassword ? 'Mostrar senha' : 'Ocutar senha'" [attr.aria-pressed]="hidePassword">
+        {{hidePassword ? '🙈' : '🙉'}}
+      </div>
+
+      <mat-error *ngIf="f.controls['password'].hasError('required')">
+        Password is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+
+    <mat-checkbox formControlName="remember" class="remember">Remember my informations</mat-checkbox>
+
+    <div class="footer-form-login">
+      <button mat-button class="button-login">Login</button>
+
+      <div class="register-account">
+        Don't have a account <strong>Register</strong>
+      </div>
+    </div>
+
+  </div>
+
+</section>
